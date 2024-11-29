@@ -59,7 +59,7 @@ const LoginForm = () => {
 			</label>
 			{error && <div className="text-error mb-4">{error}</div>}
 			<button className="btn btn-primary" type="submit">
-				Se connecter
+				Log in
 			</button>
 		</form>
 	);

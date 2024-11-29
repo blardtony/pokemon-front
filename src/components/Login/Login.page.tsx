@@ -16,12 +16,12 @@ const LoginPage = () => {
 					<Link to={'/'} className="text-5xl font-bold text-center mb-4">
 						Pokemon
 					</Link>
-					<h4 className="text-center mb-8">Connectez vous pour continuer</h4>
+					<h4 className="text-center mb-8">Log in to continue</h4>
 					<LoginForm />
 					<p className="mt-4">
-						Vous n'avez pas de compte ?{' '}
+						Not on Pokemon yet ?{' '}
 						<Link to={'/'} className="link">
-							Inscrivez-vous
+							Create an account
 						</Link>
 					</p>
 				</div>

@@ -7,7 +7,7 @@ const Header = () => {
 				<div className="font-bold text-xl">Header</div>
 				<div>
 					<Link className="btn" to={'/login'}>
-						se connecter
+						Log in
 					</Link>
 				</div>
 			</div>
