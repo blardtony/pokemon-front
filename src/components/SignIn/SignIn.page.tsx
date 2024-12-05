@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import loginImage from '../../assets/images/background_login.png';
-import LoginForm from './LoginForm';
 import { Link } from 'react-router-dom';
-const LoginPage = () => {
+import SignInForm from './SignInForm';
+const SignInPage = () => {
 	useEffect(() => {
 		document.body.style.backgroundImage = `url(${loginImage})`;
 		return () => {
@@ -16,12 +16,12 @@ const LoginPage = () => {
 					<Link to={'/'} className="text-5xl font-bold text-center mb-4">
 						Pokemon
 					</Link>
-					<h4 className="text-center mb-8">Log in to continue</h4>
-					<LoginForm />
+					<h4 className="text-center mb-6">Sign in to continue</h4>
+					<SignInForm />
 					<p className="mt-4">
-						Not on Pokemon yet ?{' '}
-						<Link to={'/register'} className="link">
-							Create an account
+						You already have an account ?{' '}
+						<Link to={'/login'} className="link">
+							Log in
 						</Link>
 					</p>
 				</div>
@@ -30,4 +30,4 @@ const LoginPage = () => {
 	);
 };
 
-export default LoginPage;
+export default SignInPage;
