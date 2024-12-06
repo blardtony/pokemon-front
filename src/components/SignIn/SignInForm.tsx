@@ -1,102 +1,193 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import type { SignInInputsType } from '../../types/auth.type';
 import { subscribe } from '../../services/auth.service';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Calendar } from '../Prime/Calendar';
 
 const SignInForm = () => {
 	const {
-		register,
+		control,
 		handleSubmit,
+		setError,
 		formState: { errors },
-	} = useForm<SignInInputsType>();
-	const [error, setError] = useState<string | null>(null);
+	} = useForm<SignInInputsType>({
+		defaultValues: {
+			login: '',
+			password: '',
+			lastName: '',
+			firstName: '',
+			birthDate: null,
+		},
+	});
+
+	// const [error, setError] = useState<string | null>(null);
+
 	const navigate = useNavigate();
+
 	const obSubmit = async (data: SignInInputsType) => {
 		const { login, password, lastName, firstName, birthDate } = data;
-		const authResult = await subscribe(
+		const authResult = await subscribe({
 			login,
 			password,
 			lastName,
 			firstName,
-			birthDate,
-		);
+			birthDate: birthDate?.toISOString() ?? '',
+		});
+
 		if (authResult.errorDetails) {
-			setError(authResult.errorDetails);
+			setError(
+				'root',
+				{
+					message: authResult.errorDetails,
+				},
+				{ shouldFocus: true },
+			);
 			return;
 		}
+
 		navigate('/');
 	};
+	console.log(errors.root);
 	return (
 		<form onSubmit={handleSubmit(obSubmit)}>
-			<label className="form-control w-full mb-4">
-				<div className="label">
-					<span className="label-text">Email</span>
-				</div>
-				<input
-					type="text"
-					{...register('login', {
-						required: 'Email is required',
-						pattern: { value: /^\S+@\S+\.\S+/i, message: 'Invalid email' },
-					})}
-					placeholder="Email"
-					className={`input input-bordered w-full ${errors.login ? 'input-error' : ''}`}
-				/>
-				{errors.login && (
-					<div className="label">
-						<span className="text-error">{errors.login.message}</span>
-					</div>
+			<Controller
+				name="login"
+				control={control}
+				rules={{
+					required: 'Email is required',
+					pattern: { value: /^\S+@\S+\.\S+/i, message: 'Invalid email' },
+				}}
+				render={({ field, fieldState }) => (
+					<>
+						<label className="form-control w-full mb-4">
+							<div className="label">
+								<span className="label-text">Email</span>
+							</div>
+							<input
+								{...field}
+								type="text"
+								placeholder="Email"
+								className={`input input-bordered w-full ${
+									fieldState.error ? 'input-error' : ''
+								}`}
+							/>
+							{fieldState.error && (
+								<div className="label">
+									<span className="text-error">{fieldState.error.message}</span>
+								</div>
+							)}
+						</label>
+					</>
 				)}
-			</label>
-			<label className="form-control w-full mb-4">
-				<div className="label">
-					<span className="label-text">Password</span>
-				</div>
-				<input
-					type="password"
-					placeholder="Password"
-					className={`input input-bordered w-full ${errors.password ? 'input-error' : ''}`}
-					{...register('password', { required: 'Password is required' })}
-				/>
-				{errors.password && (
-					<div className="label">
-						<span className="text-error">{errors.password.message}</span>
-					</div>
+			/>
+			<Controller
+				name="password"
+				control={control}
+				rules={{ required: 'Password is required' }}
+				render={({ field, fieldState }) => (
+					<>
+						<label className="form-control w-full mb-4">
+							<div className="label">
+								<span className="label-text">Password</span>
+							</div>
+							<input
+								{...field}
+								type="password"
+								placeholder="Password"
+								className={`input input-bordered w-full ${
+									fieldState.error ? 'input-error' : ''
+								}`}
+							/>
+							{fieldState.error && (
+								<div className="label">
+									<span className="text-error">{fieldState.error.message}</span>
+								</div>
+							)}
+						</label>
+					</>
 				)}
-			</label>
-			<label className="form-control w-full mb-4">
-				<div className="label">
-					<span className="label-text">Last name</span>
-				</div>
-				<input
-					type="text"
-					placeholder="Last name"
-					className={`input input-bordered w-full ${errors.lastName ? 'input-error' : ''}`}
-					{...register('lastName', { required: 'Last name is required' })}
-				/>
-				{errors.lastName && (
-					<div className="label">
-						<span className="text-error">{errors.lastName.message}</span>
-					</div>
+			/>
+
+			<Controller
+				name="lastName"
+				control={control}
+				rules={{ required: 'Last name is required' }}
+				render={({ field, fieldState }) => (
+					<>
+						<label className="form-control w-full mb-4">
+							<div className="label">
+								<span className="label-text">Last name</span>
+							</div>
+							<input
+								{...field}
+								type="text"
+								placeholder="Last name"
+								className={`input input-bordered w-full ${
+									fieldState.error ? 'input-error' : ''
+								}`}
+							/>
+							{fieldState.error && (
+								<div className="label">
+									<span className="text-error">{fieldState.error.message}</span>
+								</div>
+							)}
+						</label>
+					</>
 				)}
-			</label>
-			<label className="form-control w-full mb-4">
-				<div className="label">
-					<span className="label-text">First name</span>
-				</div>
-				<input
-					type="text"
-					placeholder="First name"
-					className={`input input-bordered w-full ${errors.firstName ? 'input-error' : ''}`}
-					{...register('firstName', { required: 'First name is required' })}
-				/>
-				{errors.firstName && (
-					<div className="label">
-						<span className="text-error">{errors.firstName.message}</span>
-					</div>
+			/>
+			<Controller
+				name="firstName"
+				control={control}
+				rules={{ required: 'First name is required' }}
+				render={({ field, fieldState }) => (
+					<>
+						<label className="form-control w-full mb-4">
+							<div className="label">
+								<span className="label-text">First name</span>
+							</div>
+							<input
+								{...field}
+								type="text"
+								placeholder="First name"
+								className={`input input-bordered w-full ${
+									fieldState.error ? 'input-error' : ''
+								}`}
+							/>
+							{fieldState.error && (
+								<div className="label">
+									<span className="text-error">{fieldState.error.message}</span>
+								</div>
+							)}
+						</label>
+					</>
 				)}
-			</label>
-			{error && <div className="text-error mb-4">{error}</div>}
+			/>
+			<Controller
+				name="birthDate"
+				control={control}
+				rules={{ required: 'Birth day is required' }}
+				render={({ field, fieldState }) => (
+					<>
+						<Calendar
+							value={field.value}
+							onChange={(e) => field.onChange(e.value)}
+							placeholder="Birth day date"
+							className={'w-full'}
+							invalid={!!fieldState.error}
+						/>
+						{fieldState.error && (
+							<div className="label">
+								<span className="text-error">{fieldState.error.message}</span>
+							</div>
+						)}
+					</>
+				)}
+			/>
+
+			{errors.root && (
+				<div className="text-error mb-4">{errors.root.message}</div>
+			)}
 			<button className="btn btn-primary" type="submit">
 				Sign in
 			</button>

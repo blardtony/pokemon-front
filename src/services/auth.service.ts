@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { SubscribeRequestData } from '../types/auth.type';
 
 export const login = async (login: string, password: string) => {
 	try {
@@ -23,20 +24,14 @@ export const login = async (login: string, password: string) => {
 	}
 };
 
-export const subscribe = async (
-	lastName: string,
-	firstName: string,
-	login: string,
-	password: string,
-	birthDate: string,
-) => {
+export const subscribe = async (data: SubscribeRequestData) => {
 	try {
 		const result = await axios.post('http://localhost:8000/subscribe', {
-			lastName: lastName,
-			firstName: firstName,
-			login: login,
-			password: password,
-			birthDate: birthDate,
+			lastName: data.lastName,
+			firstName: data.firstName,
+			login: data.login,
+			password: data.password,
+			birthDate: data.birthDate,
 		});
 
 		return {

@@ -8,5 +8,13 @@ export type SignInInputsType = {
 	password: string;
 	lastName: string;
 	firstName: string;
+	birthDate: Date | null;
+};
+
+export type SubscribeRequestData = {
+	lastName: string;
+	firstName: string;
+	login: string;
+	password: string;
 	birthDate: string;
 };

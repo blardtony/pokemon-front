@@ -1,4 +1,4 @@
-import { CalendarProps } from 'primereact/calendar';
+import type { CalendarProps } from 'primereact/calendar';
 import { classNames } from 'primereact/utils';
 
 const TRANSITIONS = {
