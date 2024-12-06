@@ -1,3 +1,4 @@
+import { CalendarProps } from 'primereact/calendar';
 import { classNames } from 'primereact/utils';
 
 const TRANSITIONS = {
@@ -13,25 +14,36 @@ const TRANSITIONS = {
 	},
 };
 
-export const Theming: any = {
+type ThemingProps = {
+	calendar: {
+		root: (props: { props: CalendarProps }) => {
+			className: string | undefined;
+		};
+		input: (props: { props: CalendarProps }) => {
+			root: { className: string | undefined };
+		};
+	};
+};
+export const Theming: ThemingProps = {
 	calendar: {
 		root: ({ props }) => ({
-			className: classNames('inline-flex max-w-full relative', {
+			className: classNames('inline-flex w-full relative', {
 				'opacity-60 select-none pointer-events-none cursor-default':
 					props.disabled,
 			}),
-			input: ({ props }) => ({
-				root: {
-					className: classNames(
-						'font-sans text-base-content text-base p-3 border border-base-100 transition-colors duration-200 appearance-none bg-base-100',
-						'hover:border-primary',
-						{
-							'rounded-lg': !props.showIcon,
-							'border-r-0 rounded-l-lg': props.showIcon,
-						},
-					),
-				},
-			}),
+		}),
+		input: ({ props }) => ({
+			root: {
+				className: classNames(
+					'font-sans text-base-content text-base p-3 border transition-colors duration-200 appearance-none bg-base-100',
+					{
+						'rounded-lg': !props.showIcon,
+						'border-r-0 rounded-l-lg': props.showIcon,
+						'border-error': props.invalid,
+						'border-base-content/20': !props.invalid,
+					},
+				),
+			},
 		}),
 	},
 };
