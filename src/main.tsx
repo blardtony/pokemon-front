@@ -29,8 +29,11 @@ const router = createBrowserRouter([
 	},
 ]);
 
-createRoot(document.getElementById('root')!).render(
-	<PrimeReactProvider value={{ pt: Theming }}>
-		<RouterProvider router={router} />,
-	</PrimeReactProvider>,
-);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+	createRoot(rootElement).render(
+		<PrimeReactProvider value={{ pt: Theming }}>
+			<RouterProvider router={router} />
+		</PrimeReactProvider>,
+	);
+}
