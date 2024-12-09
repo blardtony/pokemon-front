@@ -1,7 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import type { SignInInputsType } from '../../types/auth.type';
 import { subscribe } from '../../services/auth.service';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar } from '../Prime/Calendar';
 
