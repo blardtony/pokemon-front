@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 export type DialogProps = {
-	isOpen: boolean;
-	onClose: () => void;
-	children: ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
 };

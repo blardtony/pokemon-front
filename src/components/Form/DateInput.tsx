@@ -1,5 +1,5 @@
-import { Calendar } from '../Prime/Calendar';
+import { Calendar } from "../Prime/Calendar";
 
 export const DateInput = () => {
-	return <Calendar />;
+  return <Calendar />;
 };
