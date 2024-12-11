@@ -1,30 +1,7 @@
-import type { CalendarProps } from "primereact/calendar";
+import { PrimeReactPTOptions } from "primereact/api";
 import { classNames } from "primereact/utils";
 
-const TRANSITIONS = {
-  overlay: {
-    timeout: 150,
-    classNames: {
-      enter: "opacity-0 scale-75",
-      enterActive:
-        "opacity-100 !scale-100 transition-transform transition-opacity duration-150 ease-in",
-      exit: "opacity-100",
-      exitActive: "!opacity-0 transition-opacity duration-150 ease-linear",
-    },
-  },
-};
-
-type ThemingProps = {
-  calendar: {
-    root: (props: { props: CalendarProps }) => {
-      className: string | undefined;
-    };
-    input: (props: { props: CalendarProps }) => {
-      root: { className: string | undefined };
-    };
-  };
-};
-export const Theming: ThemingProps = {
+export const Pt: PrimeReactPTOptions = {
   calendar: {
     root: ({ props }) => ({
       className: classNames("inline-flex w-full relative", {

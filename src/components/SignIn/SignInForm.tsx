@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import type { SignInInputsType } from "../../types/auth.type";
 import { subscribe } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
-import { Calendar } from "../Prime/Calendar";
+import { Calendar } from "../common/Form/Input/Calendar";
 
 const SignInForm = () => {
   const {
