@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import loginImage from "../../assets/images/background_login.png";
+import loginImage from "../assets/images/background_login.png";
 import { Link } from "react-router-dom";
-import SignInForm from "./SignInForm";
+import SignInForm from "../components/SignIn/SignInForm";
 const SignInPage = () => {
   useEffect(() => {
     document.body.style.backgroundImage = `url(${loginImage})`;

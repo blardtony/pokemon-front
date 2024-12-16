@@ -2,9 +2,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./components/Layouts/MainLayout/MainLayout";
-import HomePage from "./components/Home/Home.page";
-import LoginPage from "./components/Login/Login.page";
-import SignInPage from "./components/SignIn/SignIn.page";
+import HomePage from "./pages/Home.page";
+import LoginPage from "./pages/Login.page";
+import SignInPage from "./pages/SignIn.page";
 import { PrimeReactProvider } from "primereact/api";
 import { Pt } from "./components/Prime/Passthrought";
 

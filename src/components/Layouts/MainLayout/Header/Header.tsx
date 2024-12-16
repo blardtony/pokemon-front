@@ -7,8 +7,11 @@ const Header = () => {
         Pokemon
       </Link>
       <div className="flex-none">
-        <Link className="btn" to={"/login"}>
+        <Link className="btn btn-primary me-2" to={"/login"}>
           Log in
+        </Link>
+        <Link className="btn" to={"/register"}>
+          Sign in
         </Link>
       </div>
     </header>
